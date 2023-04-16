@@ -149,7 +149,7 @@ jobs:
        - image: amazon/aws-cli
     steps:
       - checkout
-      - run: yum install -y taz gzip
+      - run: yum install -y tar gzip
       - run:
           name: Ensure back-end infrastructure exists
           command: |
@@ -181,24 +181,27 @@ jobs:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
       # Here's where you will add some code to rollback on failure      
 
-  # configure-infrastructure:
-  #   docker:
-  #     # Docker image here that supports Ansible
-  #   steps:
-  #     # Checkout code from git
-  #     # Add ssh keys with fingerprint
-  #     # attach workspace
-  #     - run:
-  #         name: Install dependencies
-  #         command: |
-  #           # Your code here
-  #           exit 1
-  #     - run:
-  #         name: Configure server
-  #         command: |
-  #           # Your code here
-  #           exit 1
-  #     # Here's where you will add some code to rollback on failure      
+  configure-infrastructure:
+    docker:
+      - image: python:3.11-rc-alpine
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - '8a:c9:0c:1d:be:2e:4d:21:d2:bd:5b:b2:2c:93:5a:bb'
+      - run:
+          name: Install dependencies
+          command: |
+            # Your code here
+            exit 1
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Configure server
+          command: |
+            # Your code here
+            exit 1
+      # Here's where you will add some code to rollback on failure      
 
   # run-migrations:
   #   docker:
