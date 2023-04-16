@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  slack: circleci/slack@4.1
+  slack: circleci/slack@4.12.1
 
 commands:
   destroy-environment:
@@ -116,13 +116,9 @@ jobs:
 
   scan-backend:
     docker:
-      - image: 'cimg/base:stable'
+      - image: circleci/node:13.8.0
     steps:
       - checkout
-      - node/install:
-          install-yarn: true
-          node-version: '13.8.0'
-      - run: node --version
       - restore_cache:
           keys: [backend-build]
       - run:
