@@ -133,7 +133,7 @@ jobs:
       - slack/notify:
           event: fail
           template: basic_fail_1
-
+#TEST
   # deploy-infrastructure:
   #   docker:
   #     # Docker image here that supports AWS CLI
