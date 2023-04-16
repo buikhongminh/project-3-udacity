@@ -122,7 +122,7 @@ jobs:
       - node/install:
         install-yarn: true
         node-version: '13.8.0'
-- run: node --version
+      - run: node --version
       - restore_cache:
           keys: [backend-build]
       - run:
@@ -137,6 +137,7 @@ jobs:
       - slack/notify:
           event: fail
           template: basic_fail_1
+          channel: general
 #TEST
   # deploy-infrastructure:
   #   docker:
