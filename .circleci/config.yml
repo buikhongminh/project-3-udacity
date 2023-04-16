@@ -226,11 +226,11 @@ jobs:
   #         command: |
   #           if grep -q "success" ~/project/backend/migrations.txt
   #           then
-  #             curl --insecure https://kvdb.io/BDEAKJSkNeSRkXKTviyNYR/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1'
+  #             curl --insecure https://kvdb.io/KJhNAFrUQYUwdYeyPxKn5q/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1'
   #           fi
   #           pwd; ls -la;
   #           cat ~/project/backend/migrations.txt
-  #           SUCCESS=$(curl --insecure  https://kvdb.io/BDEAKJSkNeSRkXKTviyNYR/migration_${CIRCLE_WORKFLOW_ID:0:7})
+  #           SUCCESS=$(curl --insecure  https://kvdb.io/KJhNAFrUQYUwdYeyPxKn5q/migration_${CIRCLE_WORKFLOW_ID:0:7})
   #           echo $SUCCESS
   #     - destroy-environment:
   #         workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}     
@@ -334,8 +334,8 @@ jobs:
 workflows:
   default:
     jobs:
-      - build-frontend
-      - build-backend
+      # - build-frontend
+      # - build-backend
       # - test-frontend:
       #     requires: [build-frontend]
       # - test-backend:
