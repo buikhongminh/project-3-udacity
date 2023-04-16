@@ -132,6 +132,7 @@ jobs:
             exit 1
       - slack/notify:
           event: fail
+          mentions: '@EngineeringTeam'
           template: basic_fail_1
 #TEST
   # deploy-infrastructure:
