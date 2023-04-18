@@ -231,7 +231,7 @@ jobs:
             echo $SUCCESS
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}     
-#deploy
+
   deploy-frontend:
     docker:
       - image: python:3.7-alpine3.16
