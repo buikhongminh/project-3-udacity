@@ -4,6 +4,11 @@ orbs:
   slack: circleci/slack@4.12.1
   node: circleci/node@5.1.0
 
+parameters:
+  workflow_id:
+    type: string
+    default: '${CIRCLE_WORKFLOW_ID:0:7}'
+
 commands:
   destroy-environment:
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
@@ -368,7 +373,9 @@ cleanup:
           name: Get old stack and remove stacks
           command: |
             echo "----------Get old stack------------"
-            export OldWorkflowID=<<pipeline.parameters.workflow_id>>
+            export OldWorkflowID=$(aws cloudformation \
+            list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
+            --no-paginate --output text)
             echo OldWorkflowID: "${OldWorkflowID}"
             export STACKS=$(aws cloudformation list-stacks \
             --query "StackSummaries[*].StackName" \
